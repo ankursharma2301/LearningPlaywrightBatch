@@ -1,17 +1,33 @@
-# LearningPlaywrightBatch
+# Learning Playwright Batch
 
-This repository contains code and examples for learning Playwright.
+Small collection of Playwright example scripts used for learning and experimentation.
 
-## Contents
+Project structure
+- chapter_01_Basics: simple example scripts (JS)
+- chapter_02_Java_Concepts: placeholder for Java-related files
 
-- **Chapter 01 Basics**: Basic JavaScript and Playwright setup examples.
-- **Chapter 02 Java Concepts**: (Empty for now)
+Prerequisites
+- Node.js (14+ recommended)
+- npm or yarn
 
-## Usage
-
-Clone the repository and explore the examples in each chapter.
+Quick start
+1. Install dependencies (add Playwright if you want to run tests):
 
 ```bash
-git clone https://github.com/ankursharma2301/LearningPlaywrightBatch.git
-cd LearningPlaywrightBatch
+npm init -y
+npm install -D @playwright/test
+npx playwright install
 ```
+
+2. Run Playwright tests (if you add tests):
+
+```bash
+npx playwright test
+```
+
+Notes
+- This repo currently contains example JS files under `chapter_01_Basics`.
+- Add additional README details or scripts as you like.
+
+License
+- MIT
