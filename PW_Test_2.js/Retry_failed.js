@@ -1,28 +1,31 @@
 // Retry Failed API Call
 // In automation testing, API calls sometimes fail due to network issues. Write a JavaScript program that simulates retrying a failed API call using a do...while loop. The program should retry a maximum of 5 times. Simulate random success/failure using Math.random() (40% chance of success: randomValue > 0.6). Log each attempt and print the final result.
 
-let maxRetries = 5;
-let attempt = 0;
-let success = false;
+const MAX_ATTEMPTS = 5;
+let attemptNumber = 0;
+let isSuccess = false;
+
+console.log("Starting API call with retry logic...");
+console.log("");
 
 do {
-    attempt++;
+    attemptNumber++;
+    const randomValue = Math.random();
+    isSuccess = randomValue > 0.6;
 
-    let randomValue = Math.random(); // generates value between 0 and 1
-    console.log(`Attempt ${attempt} → Random Value: ${randomValue.toFixed(2)}`);
-
-    if (randomValue > 0.6) {   // 40% success chance
-        success = true;
-        console.log("API Call Successful!");
+    if (isSuccess) {
+        console.log("Attempt " + attemptNumber + ": ✅ SUCCESS (Response 200 OK)");
     } else {
-        console.log("API Call Failed. Retrying...");
+        console.log("Attempt " + attemptNumber + ": ❌ FAILED (Timeout/Error)");
     }
+} while (!isSuccess && attemptNumber < MAX_ATTEMPTS);
 
-} while (!success && attempt < maxRetries);
+console.log("");
+console.log("--- Final Result ---");
 
-// Final Result
-if (success) {
-    console.log(`API succeeded after ${attempt} attempt(s).`);
+if (isSuccess) {
+    console.log("API call PASSED after " + attemptNumber + " attempt(s).");
 } else {
-    console.log("API failed after maximum retry attempts (5).");
+    console.log("API call FAILED after " + attemptNumber + " attempts. Max retries exhausted.");
+    console.log("ACTION: Raise a bug - API is unreliable.");
 }

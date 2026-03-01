@@ -10,34 +10,37 @@
 // - 500 → "FAIL - Internal Server Error: Backend issue"
 // - Any other → "UNKNOWN - Unhandled status code"
 
-let statusCode = 401;
+const statusCode = 401;
+let result;
 
 switch (statusCode) {
-    case 200:
-        console.log("PASS - OK: Request successful")
-        break;
-    case 201:
-        console.log("PASS - Created: Resource created successfully")
-        break;
-    case 301:
-        console.log("WARNING - Moved Permanently: URL has changed")
-        break;
-    case 400:
-        console.log("FAIL - Bad Request: Check request payload")
-        break;
-    case 401:
-        console.log("FAIL - Unauthorized: Check auth token")
-        break;
-    case 403:
-        console.log("Forbidden: Insufficient permissions")
-        break;
-    case 404:
-        console.log("FAIL - Not Found: Check endpoint URL")
-        break;
-    case 500:
-        console.log("FAIL - Internal Server Error: Backend issue")
-        break;
-    default:
-        console.log("UNKNOWN - Unhandled status code")
-        break;
+  case 200:
+    result = "PASS - OK: Request successful";
+    break;
+  case 201:
+    result = "PASS - Created: Resource created successfully";
+    break;
+  case 301:
+    result = "WARNING - Moved Permanently: URL has changed";
+    break;
+  case 400:
+    result = "FAIL - Bad Request: Check request payload";
+    break;
+  case 401:
+    result = "FAIL - Unauthorized: Check auth token";
+    break;
+  case 403:
+    result = "FAIL - Forbidden: Insufficient permissions";
+    break;
+  case 404:
+    result = "FAIL - Not Found: Check endpoint URL";
+    break;
+  case 500:
+    result = "FAIL - Internal Server Error: Backend issue";
+    break;
+  default:
+    result = "UNKNOWN - Unhandled status code: " + statusCode;
 }
+
+console.log("Status Code : " + statusCode);
+console.log("Result      : " + result);

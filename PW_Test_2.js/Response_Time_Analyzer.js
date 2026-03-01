@@ -1,50 +1,41 @@
 // 
 
-function analyzeResponseTimes(responseTimes) {
+const responseTimes = [120, 230, 450, 510, 180, 620, 340, 780, 290, 150, 530, 410];
+const SLA_LIMIT = 500;
 
-    let i = 0;
-    let min = responseTimes[0];
-    let max = responseTimes[0];
-    let sum = 0;
-    let breachCount = 0;
-    let slaThreshold = 500;
+let min = responseTimes[0];
+let max = responseTimes[0];
+let totalTime = 0;
+let breachCount = 0;
+let index = 0;
 
-    while (i < responseTimes.length) {
+console.log("Checking SLA breaches (threshold: " + SLA_LIMIT + "ms)...");
+console.log("");
 
-        let currentTime = responseTimes[i];
+while (index < responseTimes.length) {
+  const current = responseTimes[index];
 
-        // Track Minimum
-        if (currentTime < min) {
-            min = currentTime;
-        }
+  if (current < min) { min = current; }
+  if (current > max) { max = current; }
 
-        // Track Maximum
-        if (currentTime > max) {
-            max = currentTime;
-        }
+  totalTime += current;
 
-        // Calculate Sum
-        sum = sum + currentTime;
+  if (current > SLA_LIMIT) {
+    breachCount++;
+    console.log("  ⚠️ SLA BREACH at request #" + (index + 1) + ": " + current + "ms");
+  }
 
-        // Check SLA Breach
-        if (currentTime > slaThreshold) {
-            breachCount++;
-        }
-
-        i++;
-    }
-
-    let average = sum / responseTimes.length;
-
-    console.log("----- Performance Report -----");
-    console.log("Minimum Response Time:", min, "ms");
-    console.log("Maximum Response Time:", max, "ms");
-    console.log("Average Response Time:", average.toFixed(2), "ms");
-    console.log("SLA Breaches (>500ms):", breachCount);
+  index++;
 }
 
+const average = (totalTime / responseTimes.length).toFixed(2);
+const breachPercentage = ((breachCount / responseTimes.length) * 100).toFixed(2);
 
-// Example Data
-let apiResponses = [120, 450, 600, 300, 800, 200, 510];
-
-analyzeResponseTimes(apiResponses);
+console.log("");
+console.log("===== PERFORMANCE REPORT =====");
+console.log("Total Requests   : " + responseTimes.length);
+console.log("Min Response     : " + min + "ms");
+console.log("Max Response     : " + max + "ms");
+console.log("Avg Response     : " + average + "ms");
+console.log("SLA Threshold    : " + SLA_LIMIT + "ms");
+console.log("SLA Breaches     : " + breachCount + " (" + breachPercentage + "%)");

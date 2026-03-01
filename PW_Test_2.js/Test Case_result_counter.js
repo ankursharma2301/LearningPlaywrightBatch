@@ -1,13 +1,16 @@
 // Test Case Result Counter
 // After a test suite runs, you receive an array of test results (strings: "pass", "fail", "skip"). Write a JavaScript program using a for loop that counts how many tests passed, failed, and were skipped. Print a test report with total tests, counts, pass rate percentage, and a verdict (all passed → ready for release, ≤2 failures → review, >2 failures → block release).
 
-let testResults = ["pass", "fail", "pass", "skip", "pass", "fail", "pass"];
+const testResults = [
+    "pass", "pass", "fail", "pass", "skip",
+    "pass", "fail", "pass", "pass", "skip",
+    "pass", "pass", "fail", "pass", "pass"
+];
 
 let passCount = 0;
 let failCount = 0;
 let skipCount = 0;
 
-// Count results using for loop
 for (let i = 0; i < testResults.length; i++) {
     if (testResults[i] === "pass") {
         passCount++;
@@ -18,25 +21,21 @@ for (let i = 0; i < testResults.length; i++) {
     }
 }
 
-let totalTests = testResults.length;
-let passRate = ((passCount / totalTests) * 100).toFixed(2);
+const totalTests = testResults.length;
+const passRate = ((passCount / totalTests) * 100).toFixed(2);
 
-let verdict;
+console.log("========= TEST REPORT =========");
+console.log("Total Tests : " + totalTests);
+console.log("Passed      : " + passCount);
+console.log("Failed      : " + failCount);
+console.log("Skipped     : " + skipCount);
+console.log("Pass Rate   : " + passRate + "%");
+console.log("================================");
 
-// Decide verdict
 if (failCount === 0) {
-    verdict = "Ready for Release ";
+    console.log("✅ VERDICT: All tests passed. Ready for release.");
 } else if (failCount <= 2) {
-    verdict = "Needs Review ";
+    console.log("⚠️ VERDICT: Minor failures. Review before release.");
 } else {
-    verdict = "Block Release ";
+    console.log("❌ VERDICT: Too many failures. Block release.");
 }
-
-// Print Report
-console.log("------ Test Report ------");
-console.log("Total Tests:", totalTests);
-console.log("Passed:", passCount);
-console.log("Failed:", failCount);
-console.log("Skipped:", skipCount);
-console.log("Pass Rate:", passRate + "%");
-console.log("Verdict:", verdict);

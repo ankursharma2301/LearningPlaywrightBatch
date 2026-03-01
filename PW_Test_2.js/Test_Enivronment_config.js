@@ -1,74 +1,52 @@
 // 
-function getEnvironmentConfig(environmentName) {
+const envName = "staging";
+const env = envName.toLowerCase();
 
-    let config; // will hold final configuration
+let baseUrl;
+let apiKeyPrefix;
+let timeoutMs;
+let description;
 
-    switch (environmentName.toLowerCase()) {
-
-        case "dev":
-            const devBaseUrl = "https://dev.api.myapp.com";
-            const devApiKeyPrefix = "DEV-";
-            const devTimeout = 3000;
-
-            config = {
-                baseURL: devBaseUrl,
-                apiKeyPattern: devApiKeyPrefix + "XXXX",
-                timeout: devTimeout,
-                description: "Development environment for internal testing"
-            };
-            break;
-
-        case "staging":
-            const stagingBaseUrl = "https://staging.api.myapp.com";
-            const stagingApiKeyPrefix = "STG-";
-            const stagingTimeout = 5000;
-
-            config = {
-                baseURL: stagingBaseUrl,
-                apiKeyPattern: stagingApiKeyPrefix + "XXXX",
-                timeout: stagingTimeout,
-                description: "Pre-production staging environment"
-            };
-            break;
-
-        case "qa":
-            const qaBaseUrl = "https://qa.api.myapp.com";
-            const qaApiKeyPrefix = "QA-";
-            const qaTimeout = 4000;
-
-            config = {
-                baseURL: qaBaseUrl,
-                apiKeyPattern: qaApiKeyPrefix + "XXXX",
-                timeout: qaTimeout,
-                description: "QA testing environment"
-            };
-            break;
-
-        case "production":
-        case "prod":
-            const prodBaseUrl = "https://api.myapp.com";
-            const prodApiKeyPrefix = "PROD-";
-            const prodTimeout = 8000;
-
-            config = {
-                baseURL: prodBaseUrl,
-                apiKeyPattern: prodApiKeyPrefix + "SECUREKEY",
-                timeout: prodTimeout,
-                description: "Live production environment"
-            };
-            break;
-
-        default:
-            console.log("Invalid environment name");
-            return;
-    }
-
-    console.log("----- Environment Configuration -----");
-    console.log("Base URL:", config.baseURL);
-    console.log("API Key Pattern:", config.apiKeyPattern);
-    console.log("Timeout:", config.timeout, "ms");
-    console.log("Description:", config.description);
+switch (env) {
+  case "dev":
+    baseUrl = "https://dev-api.testingacademy.com";
+    apiKeyPrefix = "dev_key_";
+    timeoutMs = 10000;
+    description = "Development - Unstable, latest code";
+    break;
+  case "staging":
+    baseUrl = "https://staging-api.testingacademy.com";
+    apiKeyPrefix = "stg_key_";
+    timeoutMs = 8000;
+    description = "Staging - Pre-production mirror";
+    break;
+  case "qa":
+    baseUrl = "https://qa-api.testingacademy.com";
+    apiKeyPrefix = "qa_key_";
+    timeoutMs = 8000;
+    description = "QA - Dedicated test environment";
+    break;
+  case "production":
+  case "prod":
+    baseUrl = "https://api.testingacademy.com";
+    apiKeyPrefix = "prod_key_";
+    timeoutMs = 5000;
+    description = "Production - Live (read-only tests only!)";
+    break;
+  default:
+    baseUrl = "UNKNOWN";
+    apiKeyPrefix = "UNKNOWN";
+    timeoutMs = 0;
+    description = "Unknown environment: " + envName;
+    console.log("❌ ERROR: Invalid environment '" + envName + "'. Use: dev, staging, qa, prod");
 }
 
-// Example Usage
-getEnvironmentConfig("qa");
+if (baseUrl !== "UNKNOWN") {
+  console.log("🔧 Environment Config");
+  console.log("---------------------");
+  console.log("Environment : " + env.toUpperCase());
+  console.log("Base URL    : " + baseUrl);
+  console.log("API Key     : " + apiKeyPrefix + "xxxx-xxxx");
+  console.log("Timeout     : " + timeoutMs + "ms");
+  console.log("Description : " + description);
+}

@@ -15,16 +15,16 @@ for (let i = 0; i < totalUsers; i++) {
     // let → block scoped loop variables
     let idNumber = String(globalCounter).padStart(4, "0");
     let userId = `USR-${idNumber}`;
-    
+
     let name = `User${globalCounter}`;
     let email = `user${globalCounter}@test.com`;
-    
+
     // Role cycles automatically
     let role = roles[i % roles.length];
-    
+
     // Every 3rd user inactive (edge case)
     let isActive = (globalCounter % 3 !== 0);
-    
+
     users.push({
         id: userId,
         name: name,
@@ -32,7 +32,7 @@ for (let i = 0; i < totalUsers; i++) {
         role: role,
         isActive: isActive
     });
-    
+
     globalCounter++;
 }
 
