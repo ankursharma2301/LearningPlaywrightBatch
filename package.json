@@ -1,0 +1,23 @@
+{
+  "name": "learningplaywrightbatch-main",
+  "version": "1.0.0",
+  "description": "Small collection of Playwright example scripts used for learning and experimentation.",
+  "main": "PW_Test_2.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankursharma2301/LearningPlaywrightBatch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ankursharma2301/LearningPlaywrightBatch/issues"
+  },
+  "homepage": "https://github.com/ankursharma2301/LearningPlaywrightBatch#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.3"
+  }
+}
