@@ -1,0 +1,27 @@
+name: Upstream Sync
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs every day at midnight
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Fork
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Sync with Upstream
+        run: |
+          git remote add upstream https://github.com/PramodDutta/LearningPlaywrightBatch.git
+          git fetch upstream
+          git checkout main
+          git merge upstream/main --allow-unrelated-histories -m "Auto-sync with upstream"
+          git push origin main
