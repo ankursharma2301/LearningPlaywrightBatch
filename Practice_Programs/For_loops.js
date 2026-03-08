@@ -136,3 +136,16 @@ for (let a = 1; a <= 50; a++) {
     }
 
 }
+//==============
+//Print Fibonacci series (first 10 numbers).
+let x = 0;
+let y = 1;
+
+for (let q = 1; q <= 10; q++) {
+    console.log(x);
+    //console.log(y);
+    let next = x + y;
+    x = y;
+    y = next;
+}
+
