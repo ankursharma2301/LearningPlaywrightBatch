@@ -132,3 +132,45 @@ let num3 = [10, 40, 20, 50, 30]
 num3.sort((a, b) => b - a)
 
 console.log("Second largest:", num3[1]);
+
+//---------------------------------------------------------------
+//Exercise 1 : API Response Validation
+
+// You receive an array of API response codes. Write code to:
+
+// Check if ALL responses are successful (200–299)
+
+// Find the FIRST non-success code
+
+// Return all unique error codes
+
+
+let responses = [200, 201, 404, 500, 404, 200, 503];
+
+let allSuccesfull = responses.every(code => code >= 200 && code <= 299);
+
+console.log(`All responses succesfull ,${allSuccesfull}`);
+
+let nonSucces = responses.find(code => code < 200 || code > 299);
+
+console.log(`First non success code,${nonSucces}`)
+
+let errors = responses.filter(code => code < 200 || code > 299)
+let uniqueErrors = [...new Set(errors)];
+
+console.log(uniqueErrors);
+
+//------------------------
+let responseTimes = [320, 85, 1200, 450, 99];
+let sorted = responseTimes.sort((a, b) => a - b);
+console.log("Fastest:", sorted[0]);
+
+//---------
+// What is the output and why? How would you fix it?
+
+// javascript
+
+let suite1 = [{ name: "login", status: "pass" }];
+let suite2 = [...suite1];
+suite2[0].status = "fail";
+console.log(suite1[0].status);
