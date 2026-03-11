@@ -174,3 +174,28 @@ let suite1 = [{ name: "login", status: "pass" }];
 let suite2 = [...suite1];
 suite2[0].status = "fail";
 console.log(suite1[0].status);
+
+//
+let results = ["pass", "fail", "pass", "pass", "fail"];
+let totalPassed = results.filter((s) => s === "pass").length
+
+console.log(totalPassed)
+
+let responses1 = [200, 500, 404, 201, 503];
+
+let allFailed = responses1.filter((val) => val > 299)
+console.log(allFailed)
+
+let responses2 = [200, 200, 404, 500, 201, 503];
+
+let success = responses2.filter((val2) => val2 >= 200 && val2 < 300).length
+let failures = responses2.filter((val2) => val2 > 400).length
+
+console.log(success);
+console.log(failures)
+
+let err = [404, 500, 404, 503, 500];
+
+let uniqueerr = [...new Set(err)];
+
+console.log(uniqueerr)
