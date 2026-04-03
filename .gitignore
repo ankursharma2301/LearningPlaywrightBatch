@@ -15,9 +15,12 @@ logs/
 dist/
 coverage/
 *.local
-
 # Playwright
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+.playwright-cli/
+.playwright-mcp/
+playwright-report/
+test-results/
