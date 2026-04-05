@@ -24,3 +24,4 @@ coverage/
 .playwright-mcp/
 playwright-report/
 test-results/
+facebook_screenshot.png
