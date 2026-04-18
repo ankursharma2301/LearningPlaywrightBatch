@@ -126,8 +126,10 @@ LearningPlaywrightBatch/
 ├── chapter_20_Typescript_ENUM/         # TypeScript enums
 ├── chapter_21_Typescript_Generic/      # TypeScript generics
 ├── chapter_22_Typescript_PRIVATE_.../  # Access modifiers, abstract, readonly, decorators
-├── chapter_23_Playwright_Fundamentals/ # Playwright setup and first tests
-├── Lecture_Playwright_CLI/             # Playwright CLI commands & tools
+├── tests/                              # Playwright test repository
+├── playwright.config.js                # Playwright configuration
+├── Practice_Programs/                  # Hands-on practice scripts
+├── Task_Interview_Coding_Questions/    # Coding challenges
 ├── Lecture_Playwright_AI_Agents/       # AI-powered test automation
 ├── Lecture_Playwright_MCP/             # Model Context Protocol integration
 ├── Task_Interview_Coding_Questions/    # Coding challenges
@@ -992,7 +994,7 @@ class Calculator {
 **Your first steps into Playwright test automation.**
 
 ```
-chapter_23_Playwright_Fundamentals/
+LearningPlaywrightBatch/
 ├── tests/
 │   └── example.spec.ts    # First Playwright tests
 ├── playwright.config.ts   # Playwright configuration
